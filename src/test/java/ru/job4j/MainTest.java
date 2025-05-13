@@ -11,3 +11,4 @@ public class MainTest {
         assertThat(result).isEqualTo(excepted);
     }
 }
+
