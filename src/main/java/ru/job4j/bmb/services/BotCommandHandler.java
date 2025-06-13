@@ -4,9 +4,15 @@ import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import org.springframework.stereotype.Service;
 import ru.job4j.bmb.content.Content;
+import org.springframework.beans.factory.BeanNameAware;
 
 @Service
-public class BotCommandHandler {
+public class BotCommandHandler implements BeanNameAware {
+
+    @Override
+    public void setBeanName(String name) {
+        System.out.println(name);
+    }
 
     void receive(Content content) {
         System.out.println(content);
