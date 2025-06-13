@@ -13,12 +13,18 @@ public class Main {
     public static void main(String[] args) {
         SpringApplication.run(Main.class, args);
     }
-    
+
     @Bean
+    public CommandLineRunner checkEnv(ApplicationContext ctx) {
+        return args -> {
+            System.out.println(ctx.getEnvironment().getProperty("telegram.bot.name"));
+        };
+    }
+    /*@Bean
     public CommandLineRunner initTelegramApi(ApplicationContext ctx) {
         return args -> {
             var bot = ctx.getBean(TelegramBotService.class);
             bot.receive(new Content());
         };
-    }
+    }*/
 }
