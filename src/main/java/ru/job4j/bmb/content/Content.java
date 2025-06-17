@@ -9,6 +9,7 @@ public class Content {
     private InputFile photo;
     private InlineKeyboardMarkup markup;
     private InputFile audio;
+    private InputFile video; // ⬅️ добавили
 
     public Content(Long chatId) {
         this.chatId = chatId;
@@ -48,5 +49,13 @@ public class Content {
 
     public void setAudio(InputFile audio) {
         this.audio = audio;
+    }
+
+    public InputFile getVideo() {
+        return video;
+    }
+
+    public void setVideo(InputFile video) {
+        this.video = video;
     }
 }

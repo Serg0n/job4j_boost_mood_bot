@@ -7,10 +7,11 @@ import java.io.File;
 
 @Component
 public class ContentProviderImage implements ContentProvider {
+
     @Override
     public Content byMood(Long chatId, Long moodId) {
-        var content = new Content(chatId);
-        var imageFile = new File("./images/logo.png");
+        Content content = new Content(chatId);
+        File imageFile = new File("./images/logo.png");
         content.setPhoto(new InputFile(imageFile));
         return content;
     }

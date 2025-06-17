@@ -7,8 +7,8 @@ public class ContentProviderText implements ContentProvider {
 
     @Override
     public Content byMood(Long chatId, Long moodId) {
-        var content = new Content(chatId);
-        content.setText("Text");
+        Content content = new Content(chatId);
+        content.setText("Сегодня отличный день для новых достижений!");
         return content;
     }
 }
