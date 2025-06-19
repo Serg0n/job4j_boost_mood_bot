@@ -16,6 +16,9 @@ public class Award {
 
     private int days;
 
+    public Award(String s, String s1, int i) {
+    }
+
     public Long getId() {
         return id;
     }
