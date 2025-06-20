@@ -14,7 +14,13 @@ public class Mood {
 
     private boolean good;
 
-    public Mood(String s, boolean b) {
+    public Mood() {
+        // Пустой конструктор для JPA
+    }
+
+    public Mood(String text, boolean good) {
+        this.text = text;
+        this.good = good;
     }
 
     public Long getId() {
