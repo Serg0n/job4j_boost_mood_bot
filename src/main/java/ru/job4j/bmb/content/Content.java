@@ -9,10 +9,15 @@ public class Content {
     private InputFile photo;
     private InlineKeyboardMarkup markup;
     private InputFile audio;
-    private InputFile video; // ⬅️ добавили
+    private InputFile video;
 
     public Content(Long chatId) {
         this.chatId = chatId;
+    }
+
+    public Content(Long chatId, String text) {
+        this.chatId = chatId;
+        this.text = text;
     }
 
     public Long getChatId() {
