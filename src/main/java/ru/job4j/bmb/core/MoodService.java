@@ -48,14 +48,11 @@ public class MoodService {
     }
 
     public Content chooseMood(User user, Long moodId) {
-        // создаём запись о выборе настроения
         MoodLog log = new MoodLog();
         log.setUser(user);
         log.setId(moodId);
         log.setCreatedAt(Instant.now().getEpochSecond());
         moodLogRepository.save(log);
-
-        // получаем рекомендацию и возвращаем контент
         return recommendationEngine.recommendFor(user.getChatId(), moodId);
     }
 
