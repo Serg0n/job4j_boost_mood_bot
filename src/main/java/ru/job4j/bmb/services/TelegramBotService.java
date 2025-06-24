@@ -40,25 +40,19 @@ public class TelegramBotService extends TelegramLongPollingBot implements SentCo
                 audio.setAudio(content.getAudio());
                 audio.setCaption(content.getText());
                 execute(audio);
-                return;
-            }
-            if (content.getVideo() != null) {
+            } else if (content.getVideo() != null) {
                 SendVideo video = new SendVideo();
                 video.setChatId(content.getChatId());
                 video.setVideo(content.getVideo());
                 video.setCaption(content.getText());
                 execute(video);
-                return;
-            }
-            if (content.getPhoto() != null) {
+            } else if (content.getPhoto() != null) {
                 SendPhoto photo = new SendPhoto();
                 photo.setChatId(content.getChatId());
                 photo.setPhoto(content.getPhoto());
                 photo.setCaption(content.getText());
                 execute(photo);
-                return;
-            }
-            if (content.getText() != null) {
+            } else if (content.getText() != null) {
                 SendMessage message = new SendMessage();
                 message.setChatId(content.getChatId());
                 message.setText(content.getText());
