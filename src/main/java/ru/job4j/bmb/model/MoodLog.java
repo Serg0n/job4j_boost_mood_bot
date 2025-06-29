@@ -33,6 +33,10 @@ public class MoodLog {
         return user;
     }
 
+    public long getChatId() {
+        return user.getChatId();
+    }
+
     public void setUser(User user) {
         this.user = user;
     }
