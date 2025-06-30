@@ -2,6 +2,7 @@ package ru.job4j.bmb.core;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Service;
 import ru.job4j.bmb.content.Content;
 import ru.job4j.bmb.engine.RecommendationEngine;
@@ -27,6 +28,7 @@ public class MoodService {
     private final RecommendationEngine recommendationEngine;
     private final UserRepository userRepository;
     private final AchievementRepository achievementRepository;
+    private final ApplicationEventPublisher publisher;
 
     private final DateTimeFormatter formatter = DateTimeFormatter
             .ofPattern("dd-MM-yyyy HH:mm")
@@ -40,11 +42,13 @@ public class MoodService {
     public MoodService(MoodLogRepository moodLogRepository,
                        RecommendationEngine recommendationEngine,
                        UserRepository userRepository,
-                       AchievementRepository achievementRepository) {
+                       AchievementRepository achievementRepository,
+                       ApplicationEventPublisher publisher) {
         this.moodLogRepository = moodLogRepository;
         this.recommendationEngine = recommendationEngine;
         this.userRepository = userRepository;
         this.achievementRepository = achievementRepository;
+        this.publisher = publisher;
     }
 
     public Content chooseMood(User user, Long moodId) {
@@ -53,6 +57,7 @@ public class MoodService {
         log.setId(moodId);
         log.setCreatedAt(Instant.now().getEpochSecond());
         moodLogRepository.save(log);
+        publisher.publishEvent(new UserEvent(this, user));
         return recommendationEngine.recommendFor(user.getChatId(), moodId);
     }
 
