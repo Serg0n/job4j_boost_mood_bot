@@ -3,6 +3,7 @@ package ru.job4j.bmb.core;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 import jakarta.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Service;
 import ru.job4j.bmb.content.Content;
@@ -19,7 +20,7 @@ public class AchievementService implements ApplicationListener<UserEvent> {
     private final AwardRepository awardRepository;
     private final SentContent sender;
 
-    public AchievementService(MoodLogRepository moodLogRepository, AwardRepository awardRepository, SentContent sender) {
+    public AchievementService(MoodLogRepository moodLogRepository, AwardRepository awardRepository, @Qualifier("realTelegramBot") SentContent sender) {
         this.moodLogRepository = moodLogRepository;
         this.awardRepository = awardRepository;
         this.sender = sender;
