@@ -18,9 +18,10 @@ public interface MoodLogRepository extends CrudRepository<MoodLog, Long> {
 
     Stream<MoodLog> findByUserIdOrderByCreatedAtDesc(Long userId);
 
-    @Query(value = "SELECT * FROM mb_user u WHERE u.id NOT IN (SELECT user_id FROM mb_mood_log WHERE created_at BETWEEN :startOfDay AND :endOfDay)",
-            nativeQuery = true)
-    List<User> findUsersWhoDidNotVoteToday(long startOfDay, long endOfDay);
+    @Query("SELECT u FROM User u WHERE u.id NOT IN ("
+            + "SELECT m.user.id FROM MoodLog m WHERE m.createdAt BETWEEN :startOfDay AND :endOfDay)")
+    List<User> findUsersWhoDidNotVoteToday(@Param("startOfDay") long startOfDay,
+                                           @Param("endOfDay") long endOfDay);
 
     @Query("SELECT m FROM MoodLog m WHERE m.user.id = :userId AND m.createdAt >= :weekStart")
     List<MoodLog> findMoodLogsForWeek(@Param("userId") Long userId,

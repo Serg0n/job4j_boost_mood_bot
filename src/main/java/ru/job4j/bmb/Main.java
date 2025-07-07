@@ -15,7 +15,7 @@ import ru.job4j.bmb.repository.MoodRepository;
 
 import java.util.ArrayList;
 
-//@EnableAspectJAutoProxy
+@EnableAspectJAutoProxy
 @EnableScheduling
 @SpringBootApplication
 public class Main {
