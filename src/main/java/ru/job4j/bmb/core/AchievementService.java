@@ -47,9 +47,6 @@ public class AchievementService implements ApplicationListener<UserEvent> {
 
             }
         }
-        if (true) {
-            throw new RuntimeException("Test exception");
-        }
     }
 
     @PreDestroy

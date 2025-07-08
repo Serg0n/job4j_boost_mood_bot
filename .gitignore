@@ -21,3 +21,5 @@ out
 *.log
 config/*
 dev/*
+/moodbot.mv.db
+/moodbot.trace.db
